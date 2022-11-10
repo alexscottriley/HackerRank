@@ -1,0 +1,48 @@
+#!/bin/python3
+import math
+import os
+import random
+import re
+import sys
+
+def minimumBribes(q):
+    chaos = False
+    totalSwaps = 0
+    Q = [x for x in q]
+    Q.sort()
+    
+    while q != Q:
+        for i, j in enumerate(q):
+            x = i
+            if x == len(q)-1:
+                break
+            singleSwaps = 0
+            while q[x] > q[x+1]:
+                q[x], q[x+1] = q[x+1], q[x]
+                singleSwaps += 1
+                totalSwaps += 1
+                x += 1
+                if x == len(q)-1:
+                    break
+            if singleSwaps > 2:
+                chaos = True
+                break
+        if chaos == True:
+            break
+            
+    if chaos == False: 
+        print(totalSwaps)
+    else: 
+        print("Too chaotic")
+         
+    
+
+if __name__ == '__main__':
+    t = int(input().strip())
+
+    for t_itr in range(t):
+        n = int(input().strip())
+
+        q = list(map(int, input().rstrip().split()))
+
+        minimumBribes(q)
