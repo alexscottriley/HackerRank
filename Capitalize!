@@ -1,0 +1,23 @@
+
+import string
+# Complete the solve function below.
+def solve(s):
+    sep, result, x = [],  "", 0
+
+    while x < len(s):
+        temp = ""
+        while s[x] == " ":
+            temp += s[x]
+            x += 1
+        x += 1
+        if temp != "":    
+            sep.append(temp)
+    sep.append("")
+    
+    i = 0
+    for x in [word.capitalize() for word in s.split()]:
+        result += x
+        result += sep[i]
+        i += 1
+    return result
+    
